@@ -73,6 +73,19 @@ const Hero = () => {
 
             {/* Content */}
             <motion.div style={{ y: contentY, opacity, position: 'relative', zIndex: 10, textAlign: 'center', padding: '0 2rem', maxWidth: '1000px', willChange: 'transform, opacity' }}>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1 }}
+                    style={{ marginBottom: '2rem' }}
+                >
+                    <img
+                        src="/suverdin/logo-suverdin.png"
+                        alt="Suverdin"
+                        style={{ height: '80px', width: 'auto', filter: 'brightness(0) invert(1)' }}
+                    />
+                </motion.div>
+
                 <motion.span
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -83,7 +96,7 @@ const Hero = () => {
                         letterSpacing: '0.5em',
                         color: 'rgba(255,255,255,0.9)',
                         textTransform: 'uppercase',
-                        marginBottom: '1.5rem',
+                        marginBottom: '1rem',
                         display: 'block'
                     }}
                 >

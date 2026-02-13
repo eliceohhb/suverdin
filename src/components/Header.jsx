@@ -43,12 +43,15 @@ const Header = () => {
                         flexShrink: 0
                     }}
                 >
-                    <div style={{
-                        width: isMobile ? '24px' : '28px',
-                        height: isMobile ? '24px' : '28px',
-                        background: 'var(--charcoal)',
-                        borderRadius: '0',
-                    }}></div>
+                    <img
+                        src="/suverdin/logo-suverdin.png"
+                        alt="Suverdin Logo"
+                        style={{
+                            height: isMobile ? '32px' : '40px',
+                            width: 'auto',
+                            display: 'block'
+                        }}
+                    />
                     <span style={{
                         fontFamily: 'var(--font-heading)',
                         fontSize: isMobile ? '1.1rem' : '1.3rem',
