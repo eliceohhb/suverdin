@@ -1,3 +1,4 @@
+# Deploy workflow for Suverdin - Triggering manual refresh
 # Simple GitHub Actions workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 

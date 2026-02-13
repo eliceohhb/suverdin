@@ -1,0 +1,36 @@
+# Robots.txt for SUVERDIN E-Commerce
+# Allow search engines to crawl the website
+
+User-agent: *
+Allow: /
+Allow: /producto/
+Allow: /carrito
+Allow: /contacto
+Allow: /sitemap.xml
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Allow: *.js
+Allow: *.css
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Disallow access to specific paths
+User-agent: *
+Disallow: /admin/
+Disallow: /.env
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://suverdin.com/sitemap.xml
+
+# Comment: SUVERDIN E-Commerce 
+# Last Updated: 2026-02-11
