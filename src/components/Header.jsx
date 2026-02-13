@@ -63,7 +63,7 @@ const Header = () => {
                     }}
                 >
                     <img
-                        src="/suverdin/logo-suverdin.png"
+                        src="/logo-suverdin.png"
                         alt="Suverdin Logo"
                         style={{
                             height: isMobile ? '32px' : '40px',

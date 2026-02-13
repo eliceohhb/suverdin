@@ -80,7 +80,7 @@ const Hero = () => {
                     style={{ marginBottom: '2rem' }}
                 >
                     <img
-                        src="/suverdin/logo-suverdin.png"
+                        src="/logo-suverdin.png"
                         alt="Suverdin"
                         style={{ height: '80px', width: 'auto', filter: 'brightness(0) invert(1)' }}
                     />
