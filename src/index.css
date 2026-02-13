@@ -1,0 +1,439 @@
+/* ==========================================
+   SUVERDIN — Premium Design System
+   ========================================== */
+
+:root {
+  /* Colorful Artisan Palette */
+  --primary: #3A2F2A;
+  --secondary: #D16C4D;
+  --accent: #F4C95D;
+  --highlight: #6FB98F;
+  --creative: #8B5FBF;
+  --background: #FFF6EC;
+
+  /* Refined Gradients */
+  --vibrant-gradient: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+  --soft-gradient: linear-gradient(135deg, var(--background) 0%, #FFE4D3 100%);
+
+  /* Glass Effects */
+  --glass-bg: rgba(255, 246, 236, 0.85);
+  --glass-border: rgba(209, 108, 77, 0.2);
+  --glass-shadow: 0 15px 45px rgba(58, 47, 42, 0.1);
+
+  /* Typography - Artisan Spirit */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing */
+  --header-height: 80px;
+  --section-gap: 120px;
+  --container-max: 1320px;
+
+  /* Radius - Organic & Soft */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-organic: 60% 40% 30% 70% / 60% 30% 70% 40%;
+
+  /* Legacy Support */
+  --charcoal: var(--primary);
+  --gold: var(--secondary);
+  --cream: var(--background);
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&display=swap');
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--cream);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--charcoal);
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.4s var(--ease-smooth);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  transition: all 0.4s var(--ease-smooth);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+.gradient-text-shadow {
+  background: var(--vibrant-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 4px 15px rgba(209, 108, 77, 0.2));
+}
+
+/* Glass Floating Navbar */
+.floating-colorful-navbar {
+  background: rgba(255, 246, 236, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(209, 108, 77, 0.15);
+  box-shadow: 0 10px 40px rgba(58, 47, 42, 0.1);
+  border-radius: 100px;
+  padding: 0.5rem 1.5rem;
+}
+
+/* Selection */
+::selection {
+  background: var(--gold);
+  color: white;
+}
+
+/* Layout */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+.section {
+  padding: clamp(60px, 10vw, var(--section-gap)) 0;
+}
+
+/* Utilities */
+.glass {
+  background: rgba(250, 247, 242, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(201, 164, 106, 0.15);
+  box-shadow: 0 8px 32px rgba(62, 44, 28, 0.05);
+}
+
+border: 1px solid rgba(201, 164, 106, 0.15);
+box-shadow: 0 8px 32px rgba(62, 44, 28, 0.05);
+}
+
+.nav-link:hover,
+.cart-link:hover {
+  text-shadow: 0 0 15px rgba(209, 108, 77, 0.4);
+  transform: translateY(-2px);
+}
+
+.wood-texture {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 11c1.66 0 3.32-.34 4.88-1s3.1-1.6 4.12-3c1.02-1.4 1.55-3.05 1.55-4.73' fill='none' stroke='%233E2C1C' stroke-opacity='0.03'/%3E%3C/svg%3E");
+}
+
+.warm-gradient {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+}
+
+.soft-shadow {
+  box-shadow: 0 10px 30px rgba(62, 44, 28, 0.08);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.5s var(--ease-smooth);
+}
+
+.btn-primary {
+  background: var(--charcoal);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--charcoal-light);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(26, 26, 26, 0.2);
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: white;
+}
+
+.btn-gold:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(201, 169, 110, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--charcoal);
+  border: 1.5px solid var(--charcoal);
+}
+
+.btn-outline:hover {
+  background: var(--charcoal);
+  color: white;
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  color: white;
+}
+
+.btn-whatsapp:hover {
+  background: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(37, 211, 102, 0.25);
+}
+
+/* Section Headers */
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.8;
+}
+
+/* Divider */
+.divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  border: none;
+  margin: 1.5rem 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 10px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 70px;
+    --section-gap: 80px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    letter-spacing: -0.01em;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .container {
+    padding: 0 clamp(1rem, 3vw, 2rem);
+  }
+
+  .btn {
+    padding: 0.85rem 2rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-height: 60px;
+    --section-gap: 60px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+  }
+
+  h3 {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+  }
+
+  .section {
+    padding: clamp(40px, 8vw, 60px) 0;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.75rem;
+    font-size: 0.75rem;
+    gap: 0.4rem;
+  }
+
+  .divider {
+    width: 40px;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  a {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --header-height: 56px;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: clamp(1.25rem, 6vw, 1.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .section {
+    padding: clamp(30px, 6vw, 40px) 0;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.7rem;
+  }
+
+  .section-label {
+    font-size: 0.6rem;
+  }
+
+  video,
+  iframe {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* Gallery Enhancements */
+.gallery-main-container {
+  transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1);
+  cursor: zoom-in;
+  position: relative;
+}
+
+.gallery-main-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 30px 80px rgba(58, 47, 42, 0.15);
+}
