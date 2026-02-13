@@ -159,10 +159,7 @@ const Hero = () => {
                     zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center'
                 }}
             >
-                <div style={{
-                    width: 1, height: 60,
-                    background: 'linear-gradient(to bottom, white, transparent)',
-                }} />
+                <div style={{ width: 1, height: 60, background: 'linear-gradient(to bottom, white, transparent)' }} />
             </motion.div>
         </section>
     );

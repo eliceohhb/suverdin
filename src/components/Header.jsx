@@ -7,7 +7,26 @@ import { useCart } from '../context/CartContext';
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const { totalItems } = useCart();
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        const handleScroll = () => setScrolled(window.scrollY > 50);
+
+        checkMobile();
+        handleScroll();
+
+        window.addEventListener('resize', checkMobile);
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('resize', checkMobile);
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    const closeMenu = () => setIsOpen(false);
 
     return (
         <header
