@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import BentoGrid from '../components/BentoGrid';
+import ContactHub from '../components/ContactHub';
 
 const Home = () => {
     return (
@@ -85,6 +86,7 @@ const Home = () => {
                 </div>
             </section>
 
+            <ContactHub />
         </div>
     );
 };

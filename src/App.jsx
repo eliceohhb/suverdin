@@ -13,7 +13,7 @@ import ScrollToTop from './components/ScrollToTop';
 function App() {
     return (
         <CartProvider>
-            <Router>
+            <Router basename="/suverdin">
                 <ScrollToTop />
                 <Header />
                 <main>
@@ -23,7 +23,6 @@ function App() {
                         <Route path="/carrito" element={<Checkout />} />
                         <Route path="/contacto" element={<Contact />} />
                     </Routes>
-                    <ContactHub />
                 </main>
                 <Footer />
             </Router>
