@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, Menu, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import logo from '../assets/logo-suverdin.png';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -62,7 +63,7 @@ const Header = () => {
                     }}
                 >
                     <img
-                        src="./logo-suverdin.png"
+                        src={logo}
                         alt="Suverdin"
                         style={{
                             height: isMobile ? '45px' : '55px',
