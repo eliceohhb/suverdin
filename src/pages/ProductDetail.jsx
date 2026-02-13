@@ -21,6 +21,16 @@ const ProductDetail = () => {
     const [showVideo, setShowVideo] = useState(false);
     const [isZoomed, setIsZoomed] = useState(false);
 
+    // Carousel Auto-slide logic
+    React.useEffect(() => {
+        if (!showVideo && !isZoomed) {
+            const timer = setInterval(() => {
+                setSelectedImage((prev) => (prev + 1) % product.images.length);
+            }, 4000);
+            return () => clearInterval(timer);
+        }
+    }, [showVideo, isZoomed, product?.images.length]);
+
     if (!product) {
         return (
             <div style={{ padding: '200px 2rem', textAlign: 'center', background: 'var(--background)' }}>
@@ -36,12 +46,16 @@ const ProductDetail = () => {
         setTimeout(() => setAdded(false), 2000);
     };
 
+    const nextImage = () => setSelectedImage((prev) => (prev + 1) % product.images.length);
+    const prevImage = () => setSelectedImage((prev) => (prev - 1 + product.images.length) % product.images.length);
+
     return (
         <div style={{
             paddingTop: 'calc(var(--header-height) + 2rem)',
             minHeight: '100vh',
             background: 'var(--background)',
-            color: 'var(--primary)',
+            backgroundImage: 'var(--paper-texture)',
+            color: 'var(--text-primary)',
             paddingBottom: '8rem'
         }}>
             <div className="container" style={{ maxWidth: '1200px' }}>
@@ -61,7 +75,19 @@ const ProductDetail = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         className="section-label"
-                        style={{ color: 'var(--secondary)', marginBottom: '1.5rem', display: 'inline-block' }}
+                        style={{
+                            background: 'white',
+                            padding: '0.5rem 1.5rem',
+                            borderRadius: '100px',
+                            color: 'var(--secondary)',
+                            fontWeight: 800,
+                            fontSize: '0.8rem',
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            boxShadow: '0 4px 15px rgba(160, 92, 59, 0.1)',
+                            marginBottom: '1.5rem',
+                            display: 'inline-block'
+                        }}
                     >
                         {product.material} Artesanal
                     </motion.span>
@@ -72,11 +98,12 @@ const ProductDetail = () => {
                         className="gradient-text-shadow"
                         style={{
                             fontFamily: 'var(--font-heading)',
-                            fontSize: 'clamp(3.5rem, 8vw, 6rem)',
+                            fontSize: 'clamp(3.5rem, 8vw, 6.5rem)',
                             fontWeight: 900,
                             lineHeight: 1,
-                            letterSpacing: '-0.04em',
-                            margin: '0 auto'
+                            letterSpacing: '-0.05em',
+                            margin: '0 auto',
+                            textShadow: '4px 4px 0px rgba(160, 92, 59, 0.03)'
                         }}
                     >
                         {product.name}
@@ -90,7 +117,7 @@ const ProductDetail = () => {
                     alignItems: 'start'
                 }}>
 
-                    {/* 2 & 3. Product Gallery & Video (Interactive Storytelling) */}
+                    {/* 2 & 3. Product Gallery Carousel & Video */}
                     <div style={{ position: 'sticky', top: '140px' }}>
                         <motion.div
                             layoutId={`img-${product.id}`}
@@ -99,28 +126,31 @@ const ProductDetail = () => {
                                 borderRadius: 'var(--radius-lg)',
                                 overflow: 'hidden',
                                 background: 'white',
-                                boxShadow: '0 30px 100px rgba(58,47,42,0.12)',
+                                boxShadow: '0 40px 100px rgba(160, 92, 59, 0.15)',
                                 marginBottom: '2rem',
-                                border: '1px solid rgba(0,0,0,0.03)',
+                                border: '1px solid rgba(160, 92, 59, 0.05)',
                                 position: 'relative',
                                 cursor: 'zoom-in'
                             }}
                             onMouseEnter={() => setIsZoomed(true)}
                             onMouseLeave={() => setIsZoomed(false)}
-                            onClick={() => product.video && setShowVideo(true)}
                         >
                             <AnimatePresence mode="wait">
                                 {!showVideo ? (
-                                    <motion.img
+                                    <motion.div
                                         key={selectedImage}
-                                        src={product.images[selectedImage]}
-                                        alt={product.name}
-                                        initial={{ opacity: 0, scale: 1.05 }}
-                                        animate={{ opacity: 1, scale: isZoomed ? 1.15 : 1 }}
-                                        exit={{ opacity: 0, scale: 0.95 }}
-                                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                                        style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}
-                                    />
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0, scale: isZoomed ? 1.1 : 1 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        transition={{ duration: 0.5, ease: 'easeInOut' }}
+                                        style={{ width: '100%', aspectRatio: '4/5', position: 'relative' }}
+                                    >
+                                        <img
+                                            src={product.images[selectedImage]}
+                                            alt={product.name}
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                        />
+                                    </motion.div>
                                 ) : (
                                     <motion.div
                                         key="video-player"
@@ -161,30 +191,102 @@ const ProductDetail = () => {
                                 )}
                             </AnimatePresence>
 
+                            {/* Carousel Controls */}
+                            {!showVideo && (
+                                <>
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                                        style={{
+                                            position: 'absolute',
+                                            left: '1rem',
+                                            top: '50%',
+                                            transform: 'translateY(-50%)',
+                                            background: 'rgba(255,255,255,0.8)',
+                                            width: '40px',
+                                            height: '40px',
+                                            borderRadius: '50%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            color: 'var(--primary)',
+                                            zIndex: 10,
+                                            boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
+                                        }}
+                                    >
+                                        <ChevronLeft size={24} />
+                                    </button>
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                                        style={{
+                                            position: 'absolute',
+                                            right: '1rem',
+                                            top: '50%',
+                                            transform: 'translateY(-50%)',
+                                            background: 'rgba(255,255,255,0.8)',
+                                            width: '40px',
+                                            height: '40px',
+                                            borderRadius: '50%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            color: 'var(--primary)',
+                                            zIndex: 10,
+                                            boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
+                                        }}
+                                    >
+                                        <ChevronRight size={24} />
+                                    </button>
+
+                                    {/* Indicators */}
+                                    <div style={{
+                                        position: 'absolute',
+                                        bottom: '1.5rem',
+                                        left: '50%',
+                                        transform: 'translateX(-50%)',
+                                        display: 'flex',
+                                        gap: '0.5rem',
+                                        zIndex: 10
+                                    }}>
+                                        {product.images.map((_, i) => (
+                                            <div
+                                                key={i}
+                                                style={{
+                                                    width: '8px',
+                                                    height: '8px',
+                                                    borderRadius: '50%',
+                                                    background: selectedImage === i ? 'var(--secondary)' : 'rgba(255,255,255,0.5)',
+                                                    transition: 'all 0.3s'
+                                                }}
+                                            />
+                                        ))}
+                                    </div>
+                                </>
+                            )}
+
                             {/* Video Play Indicator */}
                             {product.video && !showVideo && (
                                 <motion.div
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
+                                    whileHover={{ scale: 1.05 }}
+                                    onClick={(e) => { e.stopPropagation(); setShowVideo(true); }}
                                     style={{
                                         position: 'absolute',
-                                        bottom: '2.5rem',
+                                        top: '2.5rem',
                                         right: '2.5rem',
                                         display: 'flex',
                                         alignItems: 'center',
                                         gap: '1rem',
-                                        background: 'rgba(255,255,255,0.95)',
-                                        padding: '1rem 1.75rem',
+                                        background: 'var(--vibrant-gradient)',
+                                        padding: '0.75rem 1.5rem',
                                         borderRadius: '100px',
-                                        boxShadow: '0 15px 35px rgba(0,0,0,0.15)',
-                                        backdropFilter: 'blur(10px)',
+                                        boxShadow: '0 10px 25px rgba(224, 122, 95, 0.3)',
                                         zIndex: 5,
-                                        cursor: 'pointer'
+                                        cursor: 'pointer',
+                                        color: 'white'
                                     }}
                                 >
-                                    <Play size={20} strokeWidth={3} fill="var(--secondary)" color="var(--secondary)" />
-                                    <span style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                                        Historia del Proceso
+                                    <Play size={18} fill="white" />
+                                    <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                                        Historia
                                     </span>
                                 </motion.div>
                             )}
@@ -193,27 +295,26 @@ const ProductDetail = () => {
                         {/* Thumbnail Slider */}
                         <div style={{
                             display: 'flex',
-                            gap: '1.25rem',
+                            gap: '1rem',
                             overflowX: 'auto',
-                            paddingBottom: '1rem',
-                            scrollbarWidth: 'none',
-                            msOverflowStyle: 'none'
+                            paddingBottom: '0.5rem',
+                            scrollbarWidth: 'none'
                         }}>
                             {product.images.map((img, i) => (
                                 <button
                                     key={i}
                                     onClick={() => setSelectedImage(i)}
                                     style={{
-                                        minWidth: '94px',
-                                        height: '94px',
+                                        minWidth: '80px',
+                                        height: '80px',
                                         borderRadius: 'var(--radius-md)',
                                         border: selectedImage === i ? '3px solid var(--secondary)' : '3px solid transparent',
                                         overflow: 'hidden',
                                         cursor: 'pointer',
-                                        transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                                        transition: 'all 0.3s',
                                         padding: 0,
                                         background: 'white',
-                                        boxShadow: selectedImage === i ? '0 8px 20px rgba(209,108,77,0.2)' : 'none'
+                                        flexShrink: 0
                                     }}
                                 >
                                     <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -222,85 +323,75 @@ const ProductDetail = () => {
                         </div>
                     </div>
 
-                    {/* 4, 5, 6, 7. Info Column */}
+                    {/* Info Column */}
                     <div>
                         <motion.div
                             initial={{ opacity: 0, x: 30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
-                            {/* 4. Product Description (Storytelling Panel) */}
+                            {/* Product Description */}
                             <div style={{
-                                background: 'linear-gradient(135deg, rgba(209,108,77,0.08) 0%, rgba(244,201,93,0.08) 100%)',
-                                padding: '3.5rem',
+                                background: 'white',
+                                padding: '3rem',
                                 borderRadius: 'var(--radius-lg)',
-                                marginBottom: '4rem',
-                                border: '1px solid rgba(209,108,77,0.15)',
-                                position: 'relative',
-                                overflow: 'hidden'
+                                marginBottom: '3rem',
+                                border: '1px solid rgba(160, 92, 59, 0.08)',
+                                boxShadow: '0 10px 40px rgba(160, 92, 59, 0.05)',
+                                position: 'relative'
                             }}>
-                                {/* Organic Decoration */}
-                                <div style={{ position: 'absolute', top: '-15%', right: '-10%', opacity: 0.08, transform: 'rotate(25deg)', color: 'var(--secondary)' }}>
-                                    <svg width="240" height="240" viewBox="0 0 100 100">
-                                        <path d="M50 0 C70 30 100 50 50 100 C0 50 30 30 50 0" fill="currentColor" />
-                                    </svg>
-                                </div>
-
-                                <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '2rem', color: 'var(--secondary)', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                                     Inspiración & Alma
                                 </h3>
-                                <p style={{ fontSize: '1.25rem', lineHeight: 2, color: 'var(--primary)', fontWeight: 500, opacity: 0.9 }}>
+                                <p style={{ fontSize: '1.15rem', lineHeight: 1.8, color: 'var(--text-primary)', opacity: 0.8 }}>
                                     {product.story || product.shortDescription}
                                 </p>
                             </div>
 
-                            {/* 5 & 6. Price & Details */}
-                            <div style={{ marginBottom: '4.5rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem', marginBottom: '3.5rem' }}>
-                                    <div style={{ fontSize: '4rem', fontWeight: 900, color: 'var(--primary)', letterSpacing: '-0.04em', lineHeight: 1 }}>
+                            {/* Price & Details */}
+                            <div style={{ marginBottom: '4rem' }}>
+                                <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', marginBottom: '2.5rem' }}>
+                                    <div style={{ fontSize: '3.5rem', fontWeight: 900, color: 'var(--primary)', letterSpacing: '-0.03em' }}>
                                         ${product.price?.toLocaleString('es-CL')}
                                     </div>
-                                    <div style={{ fontSize: '1.1rem', opacity: 0.5, fontWeight: 700, textTransform: 'uppercase' }}>Valor de la Pieza</div>
+                                    <div style={{ fontSize: '1rem', opacity: 0.5, fontWeight: 700 }}>Valor de la Pieza</div>
                                 </div>
 
-                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
-                                    <div>
-                                        <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', opacity: 0.6, marginBottom: '0.75rem', fontWeight: 800, letterSpacing: '0.05em' }}>Dimensiones</h4>
-                                        <p style={{ fontWeight: 800, fontSize: '1.3rem', color: 'var(--primary)' }}>{product.dimensions}</p>
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                                    <div style={{ background: 'rgba(129, 178, 154, 0.1)', padding: '1.5rem', borderRadius: 'var(--radius-md)' }}>
+                                        <h4 style={{ fontSize: '0.75rem', textTransform: 'uppercase', opacity: 0.6, marginBottom: '0.5rem', fontWeight: 800 }}>Dimensiones</h4>
+                                        <p style={{ fontWeight: 800, fontSize: '1.2rem', color: 'var(--accent2)' }}>{product.dimensions}</p>
                                     </div>
-                                    <div>
-                                        <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', opacity: 0.6, marginBottom: '0.75rem', fontWeight: 800, letterSpacing: '0.05em' }}>Artesanía</h4>
-                                        <p style={{ fontWeight: 800, fontSize: '1.3rem', color: 'var(--primary)' }}>{product.deliveryTime || 'Bajo pedido'}</p>
+                                    <div style={{ background: 'rgba(157, 78, 221, 0.1)', padding: '1.5rem', borderRadius: 'var(--radius-md)' }}>
+                                        <h4 style={{ fontSize: '0.75rem', textTransform: 'uppercase', opacity: 0.6, marginBottom: '0.5rem', fontWeight: 800 }}>Artesanía</h4>
+                                        <p style={{ fontWeight: 800, fontSize: '1.2rem', color: 'var(--accent3)' }}>{product.deliveryTime || 'Bajo pedido'}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* 7. Contact Button & Actions */}
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                            {/* Actions */}
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                 <motion.button
-                                    whileHover={{ scale: 1.03, y: -5 }}
-                                    whileTap={{ scale: 0.97 }}
+                                    whileHover={{ scale: 1.02, boxShadow: '0 15px 40px rgba(224, 122, 95, 0.4)' }}
+                                    whileTap={{ scale: 0.98 }}
                                     onClick={handleAddToCart}
-                                    disabled={added}
                                     style={{
-                                        padding: '2rem',
+                                        padding: '1.75rem',
                                         borderRadius: 'var(--radius-md)',
                                         border: 'none',
-                                        background: added ? 'var(--highlight)' : 'var(--vibrant-gradient)',
+                                        background: added ? 'var(--accent2)' : 'var(--vibrant-gradient)',
                                         color: 'white',
-                                        fontSize: '1.3rem',
+                                        fontSize: '1.2rem',
                                         fontWeight: 900,
                                         cursor: 'pointer',
-                                        boxShadow: added ? 'none' : '0 20px 50px rgba(209,108,77,0.3)',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        gap: '1.25rem',
-                                        textTransform: 'uppercase',
-                                        letterSpacing: '0.05em'
+                                        gap: '1rem',
+                                        textTransform: 'uppercase'
                                     }}
                                 >
-                                    {added ? <Check size={26} strokeWidth={3} /> : <Plus size={26} strokeWidth={3} />}
+                                    {added ? <Check size={24} strokeWidth={3} /> : <Plus size={24} strokeWidth={3} />}
                                     {added ? '¡Agregado!' : 'Agregar a mi Espacio'}
                                 </motion.button>
 
@@ -308,21 +399,19 @@ const ProductDetail = () => {
                                     href={`https://wa.me/56928870119?text=Hola! Estoy interesado en el producto: ${product.name}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="pulse-effect"
+                                    whileHover={{ scale: 1.02, background: 'rgba(160, 92, 59, 0.05)' }}
                                     style={{
-                                        padding: '1.75rem',
+                                        padding: '1.5rem',
                                         borderRadius: 'var(--radius-md)',
-                                        border: '4px solid var(--secondary)',
+                                        border: '2px solid var(--primary)',
                                         background: 'transparent',
-                                        color: 'var(--secondary)',
-                                        fontSize: '1.25rem',
-                                        fontWeight: 900,
+                                        color: 'var(--primary)',
+                                        fontSize: '1.1rem',
+                                        fontWeight: 800,
                                         cursor: 'pointer',
                                         textDecoration: 'none',
                                         textAlign: 'center',
-                                        transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                                        textTransform: 'uppercase',
-                                        letterSpacing: '0.05em'
+                                        textTransform: 'uppercase'
                                     }}
                                 >
                                     Personalizar esta Pieza
@@ -331,93 +420,11 @@ const ProductDetail = () => {
                         </motion.div>
                     </div>
                 </div>
-
-                {/* 8. Social Media Section (Colorful Artisan Cards) */}
-                <section style={{
-                    marginTop: '12rem',
-                    padding: '10rem 3rem',
-                    textAlign: 'center',
-                    background: 'var(--primary)',
-                    borderRadius: 'var(--radius-lg)',
-                    color: 'white',
-                    position: 'relative',
-                    overflow: 'hidden'
-                }}>
-                    <div style={{ position: 'relative', zIndex: 2 }}>
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 0.6 }}
-                            style={{ textTransform: 'uppercase', letterSpacing: '0.2rem', fontSize: '0.9rem', fontWeight: 800, marginBottom: '2rem', display: 'block' }}
-                        >
-                            Conecta con la Pieza
-                        </motion.span>
-                        <motion.h2
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(3rem, 6vw, 4.5rem)', marginBottom: '4rem', fontWeight: 900, lineHeight: 1 }}
-                        >
-                            Lleva el Color a tus Redes
-                        </motion.h2>
-
-                        <div style={{ display: 'flex', justifyContent: 'center', gap: '3.5rem', flexWrap: 'wrap' }}>
-                            {[
-                                { Icon: Instagram, color: '#E1306C' },
-                                { Icon: Facebook, color: '#1877F2' },
-                                { Icon: Twitter, color: '#1DA1F2' }
-                            ].map(({ Icon, color }, idx) => (
-                                <motion.a
-                                    key={idx}
-                                    href="#"
-                                    whileHover={{ scale: 1.2, rotate: idx % 2 === 0 ? 10 : -10 }}
-                                    style={{
-                                        width: '86px', height: '86px',
-                                        background: 'rgba(255,255,255,0.06)',
-                                        borderRadius: '2rem',
-                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                        color: 'white', border: '1.5px solid rgba(255,255,255,0.12)',
-                                        backdropFilter: 'blur(15px)',
-                                        boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
-                                        transition: 'all 0.4s'
-                                    }}
-                                >
-                                    <Icon size={34} strokeWidth={1.5} />
-                                </motion.a>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Artistic Blobs Background */}
-                    <motion.div
-                        animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
-                        transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-                        style={{
-                            position: 'absolute', top: '-10%', right: '-5%',
-                            width: '600px', height: '600px', background: 'var(--secondary)',
-                            filter: 'blur(150px)', opacity: 0.15
-                        }}
-                    />
-                    <motion.div
-                        animate={{ x: [0, -40, 0], y: [0, 60, 0] }}
-                        transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
-                        style={{
-                            position: 'absolute', bottom: '-15%', left: '-5%',
-                            width: '500px', height: '500px', background: 'var(--creative)',
-                            filter: 'blur(130px)', opacity: 0.12
-                        }}
-                    />
-                </section>
             </div>
 
             <style>{`
-                .pulse-effect:hover {
-                    box-shadow: 0 0 0 20px rgba(209,108,77,0.12);
-                    background: rgba(209,108,77,0.04);
-                }
                 .gallery-main-container:hover {
-                    transform: scale(1.02);
-                    box-shadow: 0 40px 120px rgba(58, 47, 42, 0.18) !important;
+                    box-shadow: 0 50px 120px rgba(160, 92, 59, 0.2) !important;
                 }
             `}</style>
         </div>

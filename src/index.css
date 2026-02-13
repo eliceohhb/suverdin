@@ -3,42 +3,49 @@
    ========================================== */
 
 :root {
-  /* Colorful Artisan Palette */
-  --primary: #3A2F2A;
-  --secondary: #D16C4D;
-  --accent: #F4C95D;
-  --highlight: #6FB98F;
-  --creative: #8B5FBF;
-  --background: #FFF6EC;
+  /* Hippie Artisan Modern Colorful Palette */
+  --primary: #A05C3B;
+  /* Sienna/Wood */
+  --secondary: #E07A5F;
+  /* Terracotta */
+  --accent1: #F2CC8F;
+  /* Sand/Warm Yellow */
+  --accent2: #81B29A;
+  /* Sage Green */
+  --accent3: #9D4EDD;
+  /* Purple accent */
+  --background: #FFF8F0;
+  /* Off-white/Creamy */
+  --text-primary: #3A2F2A;
+  --text-secondary: rgba(58, 47, 42, 0.7);
 
   /* Refined Gradients */
-  --vibrant-gradient: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-  --soft-gradient: linear-gradient(135deg, var(--background) 0%, #FFE4D3 100%);
+  --vibrant-gradient: linear-gradient(135deg, var(--secondary) 0%, var(--accent1) 100%);
+  --artistic-gradient: linear-gradient(135deg, var(--accent2) 0%, var(--accent3) 100%);
+  --soft-gradient: linear-gradient(135deg, var(--background) 0%, var(--accent1) 20%, var(--background) 100%);
 
   /* Glass Effects */
-  --glass-bg: rgba(255, 246, 236, 0.85);
-  --glass-border: rgba(209, 108, 77, 0.2);
-  --glass-shadow: 0 15px 45px rgba(58, 47, 42, 0.1);
+  --glass-bg: rgba(255, 248, 240, 0.85);
+  --glass-border: rgba(224, 122, 95, 0.2);
+  --glass-shadow: 0 15px 45px rgba(160, 92, 59, 0.1);
 
   /* Typography - Artisan Spirit */
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 
   /* Spacing */
-  --header-height: 80px;
-  --section-gap: 120px;
+  --header-height: 90px;
+  --section-gap: 140px;
   --container-max: 1320px;
 
   /* Radius - Organic & Soft */
-  --radius-sm: 12px;
-  --radius-md: 20px;
-  --radius-lg: 32px;
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 40px;
   --radius-organic: 60% 40% 30% 70% / 60% 30% 70% 40%;
 
-  /* Legacy Support */
-  --charcoal: var(--primary);
-  --gold: var(--secondary);
-  --cream: var(--background);
+  /* Textures */
+  --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
 /* Reset */
@@ -59,7 +66,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--cream);
+  background-color: var(--background);
+  background-image: var(--paper-texture);
   color: var(--text-primary);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
@@ -74,10 +82,11 @@ h3,
 h4,
 h5 {
   font-family: var(--font-heading);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--charcoal);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  text-shadow: 2px 2px 4px rgba(160, 92, 59, 0.05);
 }
 
 p {

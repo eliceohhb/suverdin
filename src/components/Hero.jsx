@@ -45,7 +45,7 @@ const Hero = () => {
                         {/* Artistic Overlays */}
                         <div style={{
                             position: 'absolute', inset: 0,
-                            background: 'linear-gradient(to bottom, rgba(58,47,42,0.4), rgba(209,108,77,0.2), var(--background))',
+                            background: 'linear-gradient(to bottom, rgba(58,47,42,0.5), rgba(224,122,95,0.2), var(--background))',
                             zIndex: 1
                         }} />
                     </motion.div>
@@ -58,8 +58,8 @@ const Hero = () => {
                     style={{
                         position: 'absolute', top: '10%', right: '5%',
                         width: '40vw', height: '40vw',
-                        background: 'var(--accent)', filter: 'blur(100px)',
-                        opacity: 0.3, borderRadius: '50%', zIndex: 1
+                        background: 'var(--accent1)', filter: 'blur(100px)',
+                        opacity: 0.2, borderRadius: '50%', zIndex: 1
                     }}
                 />
                 <motion.div
@@ -68,8 +68,8 @@ const Hero = () => {
                     style={{
                         position: 'absolute', bottom: '20%', left: '10%',
                         width: '35vw', height: '35vw',
-                        background: 'var(--creative)', filter: 'blur(120px)',
-                        opacity: 0.2, borderRadius: '50%', zIndex: 1
+                        background: 'var(--accent3)', filter: 'blur(120px)',
+                        opacity: 0.15, borderRadius: '50%', zIndex: 1
                     }}
                 />
             </motion.div>
@@ -85,13 +85,16 @@ const Hero = () => {
                         display: 'inline-block',
                         marginBottom: '1.5rem',
                         color: 'var(--secondary)',
-                        background: 'rgba(255,255,255,0.7)',
-                        padding: '0.5rem 1.5rem',
+                        background: 'white',
+                        padding: '0.6rem 2rem',
                         borderRadius: '2rem',
+                        fontWeight: 800,
+                        letterSpacing: '0.1em',
+                        boxShadow: '0 10px 30px rgba(160, 92, 59, 0.1)',
                         backdropFilter: 'blur(10px)'
                     }}
                 >
-                    Arte · Naturaleza · Diseño
+                    ARTE · NATURALEZA · DISEÑO
                 </motion.span>
 
                 <motion.h1
@@ -101,12 +104,13 @@ const Hero = () => {
                     className="hero-title"
                     style={{
                         fontFamily: 'var(--font-heading)',
-                        fontSize: 'clamp(3.5rem, 12vw, 7.5rem)',
+                        fontSize: 'clamp(3.5rem, 12vw, 8rem)',
                         fontWeight: 900,
-                        lineHeight: 0.9,
+                        lineHeight: 0.85,
                         marginBottom: '1.5rem',
-                        color: 'var(--primary)',
-                        letterSpacing: '-0.04em',
+                        color: 'var(--text-primary)',
+                        letterSpacing: '-0.05em',
+                        textShadow: '4px 4px 0px rgba(160, 92, 59, 0.05)'
                     }}
                 >
                     Muebles con <br />
@@ -120,17 +124,17 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.8 }}
                     style={{
-                        fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
-                        color: 'var(--primary)',
-                        fontWeight: 500,
-                        maxWidth: '650px',
+                        fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)',
+                        color: 'var(--text-primary)',
+                        fontWeight: 600,
+                        maxWidth: '700px',
                         margin: '0 auto 4rem',
-                        lineHeight: 1.4,
+                        lineHeight: 1.3,
                         opacity: 0.9,
-                        textShadow: '0 1px 10px rgba(255,255,255,0.5)'
+                        textShadow: '0 2px 20px rgba(255,248,240,0.8)'
                     }}
                 >
-                    Arte, naturaleza y diseño en cada creación.
+                    Piezas únicas que cuentan historias a través de la madera y el pigmento.
                 </motion.p>
 
                 <motion.div
@@ -143,17 +147,20 @@ const Hero = () => {
                         className="btn btn-primary"
                         onClick={() => document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' })}
                         style={{
-                            padding: '1.5rem 4rem',
-                            fontSize: '1rem',
+                            padding: '1.75rem 5rem',
+                            fontSize: '1.1rem',
                             background: 'var(--vibrant-gradient)',
                             border: 'none',
                             color: 'white',
-                            fontWeight: 700,
+                            fontWeight: 900,
                             borderRadius: '3rem',
-                            boxShadow: '0 10px 30px rgba(209,108,77,0.3)'
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.05em',
+                            boxShadow: '0 20px 50px rgba(224, 122, 95, 0.4)',
+                            cursor: 'pointer'
                         }}
                     >
-                        Explorar Productos
+                        Explorar Colección
                     </button>
                 </motion.div>
             </motion.div>

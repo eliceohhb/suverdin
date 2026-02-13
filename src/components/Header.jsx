@@ -72,10 +72,25 @@ const Header = () => {
 
                 {/* Navigation - Desktop */}
                 <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
-                    {['Inicio', 'Productos', 'Contacto'].map((item) => (
+                    {[
+                        { name: 'Inicio', path: '/' },
+                        { name: 'Productos', path: '/#catalog' },
+                        { name: 'Contacto', path: '/contacto' }
+                    ].map((item) => (
                         <Link
-                            key={item}
-                            to={item === 'Inicio' ? '/' : item === 'Productos' ? '/#catalog' : '/contacto'}
+                            key={item.name}
+                            to={item.path}
+                            onClick={(e) => {
+                                if (item.name === 'Inicio' && window.location.pathname === '/') {
+                                    e.preventDefault();
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                } else if (item.name === 'Productos') {
+                                    if (window.location.pathname === '/') {
+                                        e.preventDefault();
+                                        document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+                                    }
+                                }
+                            }}
                             className="nav-link"
                             style={{
                                 fontSize: '0.85rem',
@@ -88,7 +103,7 @@ const Header = () => {
                                 position: 'relative'
                             }}
                         >
-                            {item}
+                            {item.name}
                         </Link>
                     ))}
                 </nav>
@@ -155,14 +170,29 @@ const Header = () => {
                             gap: '1.5rem'
                         }}
                     >
-                        {['Inicio', 'Productos', 'Contacto'].map((item) => (
+                        {[
+                            { name: 'Inicio', path: '/' },
+                            { name: 'Productos', path: '/#catalog' },
+                            { name: 'Contacto', path: '/contacto' }
+                        ].map((item) => (
                             <Link
-                                key={item}
-                                to={item === 'Inicio' ? '/' : item === 'Productos' ? '/#catalog' : '/contacto'}
-                                onClick={closeMenu}
+                                key={item.name}
+                                to={item.path}
+                                onClick={(e) => {
+                                    closeMenu();
+                                    if (item.name === 'Inicio' && window.location.pathname === '/') {
+                                        e.preventDefault();
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    } else if (item.name === 'Productos') {
+                                        if (window.location.pathname === '/') {
+                                            e.preventDefault();
+                                            document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }
+                                }}
                                 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--primary)', textDecoration: 'none' }}
                             >
-                                {item}
+                                {item.name}
                             </Link>
                         ))}
                     </motion.div>

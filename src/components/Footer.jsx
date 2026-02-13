@@ -13,12 +13,12 @@ const Footer = () => {
         }}>
             {/* Artistic Decorations */}
             <div style={{
-                position: 'absolute', top: 0, left: 0, width: '100%', height: '10px',
+                position: 'absolute', top: 0, left: 0, width: '100%', height: '8px',
                 background: 'var(--vibrant-gradient)'
             }} />
             <div style={{
                 position: 'absolute', bottom: '-5%', left: '-5%', width: '300px', height: '300px',
-                background: 'var(--secondary)', filter: 'blur(150px)', opacity: 0.1, borderRadius: '50%'
+                background: 'var(--accent1)', filter: 'blur(150px)', opacity: 0.1, borderRadius: '50%'
             }} />
 
             <div className="container">
