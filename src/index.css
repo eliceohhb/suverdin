@@ -5,50 +5,47 @@
    ========================================== */
 
 :root {
-  /* Hippie Artisan Modern Colorful Palette */
-  --primary: #A05C3B;
-  /* Sienna/Wood */
-  --secondary: #E07A5F;
-  /* Terracotta */
-  --accent1: #F2CC8F;
-  /* Sand/Warm Yellow */
-  --accent2: #81B29A;
-  /* Sage Green */
-  --accent3: #9D4EDD;
-  /* Purple accent */
-  --background: #FFF8F0;
-  /* Off-white/Creamy */
-  --text-primary: #3A2F2A;
-  --text-secondary: rgba(58, 47, 42, 0.7);
+  /* Luxury & Organic Palette */
+  --primary: #2D241E;
+  /* Deep Espresso */
+  --secondary: #8E5A3E;
+  /* Terra Muted */
+  --accent1: #D4A373;
+  /* Warm Oak */
+  --accent2: #6B705C;
+  /* Sage Leaf */
+  --accent3: #A5A58D;
+  /* Muted Olive */
+  --background: #FDFBF7;
+  /* Bone/Light Cream */
+  --text-primary: #1A1A1A;
+  --text-secondary: rgba(26, 26, 26, 0.65);
+
+  /* Luxury Tokens */
+  --gold: #C9A96E;
+  --gold-light: #DFCA9B;
+  --charcoal: #2D241E;
+  --charcoal-light: #4A3B31;
 
   /* Refined Gradients */
   --vibrant-gradient: linear-gradient(135deg, var(--secondary) 0%, var(--accent1) 100%);
   --artistic-gradient: linear-gradient(135deg, var(--accent2) 0%, var(--accent3) 100%);
   --soft-gradient: linear-gradient(135deg, var(--background) 0%, var(--accent1) 20%, var(--background) 100%);
 
-  /* Glass Effects */
-  --glass-bg: rgba(255, 248, 240, 0.85);
-  --glass-border: rgba(224, 122, 95, 0.2);
-  --glass-shadow: 0 15px 45px rgba(160, 92, 59, 0.1);
-
-  /* Typography - Artisan Spirit */
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  /* Typography - Luxury Serif & Modern Sans */
+  --font-heading: 'Lora', serif;
+  --font-body: 'Outfit', sans-serif;
 
   /* Spacing */
   --header-height: 90px;
-  --section-gap: 140px;
-  --container-max: 1320px;
+  --section-gap: 120px;
+  --container-max: 1280px;
 
-  /* Radius - Organic & Soft */
-  --radius-sm: 16px;
-  --radius-md: 24px;
-  --radius-lg: 40px;
-  --radius-organic: 60% 40% 30% 70% / 60% 30% 70% 40%;
-
-  /* Textures */
-  --paper-texture: none;
-  /* Removed heavy SVG noise for performance */
+  /* Radius - Sophisticated Curve */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-organic: 30% 70% 70% 30% / 30% 30% 70% 70%;
 }
 
 /* Reset */
@@ -85,11 +82,10 @@ h3,
 h4,
 h5 {
   font-family: var(--font-heading);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
-  text-shadow: 2px 2px 4px rgba(160, 92, 59, 0.05);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--charcoal);
   will-change: transform, opacity;
 }
 

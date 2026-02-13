@@ -16,14 +16,14 @@ const ProductCard = ({ product, index }) => {
                     display: 'block',
                     position: 'relative',
                     overflow: 'hidden',
-                    borderRadius: 'var(--radius-lg)',
-                    background: 'var(--cream-dark)',
-                    transition: 'all 0.6s cubic-bezier(0.23,1,0.32,1)',
+                    borderRadius: '0',
+                    background: 'white',
+                    transition: 'all 0.6s cubic-bezier(0.2, 0, 0, 1)',
                 }}
                 className="product-card"
             >
                 {/* Image */}
-                <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: index % 3 === 0 ? '3/4' : '4/5' }}>
+                <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/5', background: '#f5f5f5' }}>
                     <img
                         src={product.images[0]}
                         alt={product.name}
@@ -32,60 +32,53 @@ const ProductCard = ({ product, index }) => {
                             width: '100%',
                             height: '100%',
                             objectFit: 'cover',
-                            transition: 'transform 0.8s cubic-bezier(0.23,1,0.32,1), filter 0.8s ease',
+                            transition: 'transform 1.2s cubic-bezier(0.2, 0, 0, 1)',
                         }}
                         className="card-image"
                     />
-                    {/* Hover Overlay */}
+                    {/* Hover Info Overlay */}
                     <div className="card-overlay" style={{
                         position: 'absolute', inset: 0,
-                        background: 'linear-gradient(to top, rgba(26,26,26,0.6) 0%, transparent 60%)',
+                        background: 'rgba(45,36,30,0.1)',
                         opacity: 0,
-                        transition: 'opacity 0.5s ease',
+                        transition: 'opacity 0.6s ease',
                         display: 'flex',
-                        alignItems: 'flex-end',
-                        padding: '2rem',
+                        alignItems: 'center',
+                        justifyContent: 'center'
                     }}>
-                        <span style={{
-                            color: 'white',
-                            fontSize: '0.7rem',
-                            fontWeight: 600,
-                            letterSpacing: '0.2em',
-                            textTransform: 'uppercase',
+                        <div style={{
+                            padding: '1rem 2rem',
+                            background: 'white',
+                            color: 'var(--charcoal)',
+                            fontSize: '0.8rem',
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase'
                         }}>
-                            Ver Detalles →
-                        </span>
+                            Ver Pieza
+                        </div>
                     </div>
                 </div>
 
                 {/* Info */}
-                <div style={{ padding: '1.5rem', background: 'white' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
-                        <span style={{
-                            fontSize: '0.7rem',
-                            fontWeight: 700,
-                            letterSpacing: '0.1em',
-                            textTransform: 'uppercase',
-                            color: 'var(--secondary)',
-                            background: 'rgba(209,108,77,0.05)',
-                            padding: '0.2rem 0.6rem',
-                            borderRadius: '4px'
-                        }}>
-                            {product.material.split('+')[0].trim()}
-                        </span>
-                        <span style={{ fontWeight: 700, color: 'var(--primary)', fontSize: '1rem' }}>
-                            ${product.price.toLocaleString('es-CL')}
-                        </span>
-                    </div>
+                <div style={{ padding: '1.5rem 0.5rem', textAlign: 'center' }}>
                     <h3 style={{
                         fontFamily: 'var(--font-heading)',
-                        fontSize: '1.3rem',
-                        fontWeight: 700,
-                        color: 'var(--primary)',
-                        lineHeight: 1.2
+                        fontSize: '1.2rem',
+                        fontWeight: 400,
+                        color: 'var(--charcoal)',
+                        marginBottom: '0.5rem',
+                        fontStyle: 'italic'
                     }}>
                         {product.name}
                     </h3>
+                    <div style={{
+                        fontSize: '0.9rem',
+                        color: 'var(--secondary)',
+                        fontWeight: 500,
+                        letterSpacing: '0.05em'
+                    }}>
+                        ${product.price.toLocaleString('es-CL')}
+                    </div>
                 </div>
             </Link>
 
