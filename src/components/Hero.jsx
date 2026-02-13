@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import logo from '../assets/logo-suverdin.png';
 
 const Hero = () => {
     const { scrollY } = useScroll();
