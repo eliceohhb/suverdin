@@ -21,8 +21,8 @@ const ContactHub = () => {
             position: 'relative'
         }}>
             {/* Background Decorations */}
-            <div style={{ position: 'absolute', top: '-10%', left: '-10%', width: '400px', height: '400px', background: 'rgba(209,108,77,0.05)', filter: 'blur(100px)', borderRadius: '50%' }} />
-            <div style={{ position: 'absolute', bottom: '-10%', right: '-10%', width: '400px', height: '400px', background: 'rgba(139,95,191,0.05)', filter: 'blur(100px)', borderRadius: '50%' }} />
+            <div style={{ position: 'absolute', top: '-10%', left: '-10%', width: '300px', height: '300px', background: 'rgba(209,108,77,0.03)', filter: 'blur(60px)', borderRadius: '50%' }} />
+            <div style={{ position: 'absolute', bottom: '-10%', right: '-10%', width: '300px', height: '300px', background: 'rgba(139,95,191,0.03)', filter: 'blur(80px)', borderRadius: '50%' }} />
 
             <div className="container">
                 <div style={{ textAlign: 'center', marginBottom: '5rem' }}>

@@ -57,23 +57,25 @@ const CustomCursor = () => {
                 style={{
                     x: springX, y: springY, translateX: '-50%', translateY: '-50%',
                     width: '8px', height: '8px',
-                    backgroundColor: 'var(--secondary)'
+                    backgroundColor: 'var(--secondary)',
+                    transformZ: 0, /* Hardware acceleration */
                 }}
             />
             {/* Large circle */}
             <motion.div
                 className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999]"
                 animate={{
-                    scale: isClickable ? 2 : 1,
+                    scale: isClickable ? 1.5 : 1, /* Reduced scale for performance */
                     opacity: isHovered ? 1 : 0,
-                    backgroundColor: isClickable ? 'rgba(209, 108, 77, 0.1)' : 'rgba(209, 108, 77, 0)',
+                    backgroundColor: isClickable ? 'rgba(209, 108, 77, 0.05)' : 'rgba(209, 108, 77, 0)',
                     borderColor: 'var(--secondary)'
                 }}
-                transition={{ type: 'spring', damping: 20, stiffness: 150 }}
+                transition={{ type: 'spring', damping: 30, stiffness: 200 }} /* Smoother springs */
                 style={{
                     x: springX, y: springY, translateX: '-50%', translateY: '-50%',
-                    width: '48px', height: '48px',
-                    border: '1px solid var(--secondary)'
+                    width: '40px', height: '40px', /* Smaller circle */
+                    border: '1px solid var(--secondary)',
+                    transformZ: 0, /* Hardware acceleration */
                 }}
             />
         </>

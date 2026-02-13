@@ -53,29 +53,31 @@ const Hero = () => {
 
                 {/* Dynamic Color Blobs for "Artsy" feel */}
                 <motion.div
-                    animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
+                    animate={{ x: [0, 30, 0], y: [0, 20, 0] }}
                     transition={{ repeat: Infinity, duration: 20 }}
                     style={{
                         position: 'absolute', top: '10%', right: '5%',
-                        width: '40vw', height: '40vw',
-                        background: 'var(--accent1)', filter: 'blur(100px)',
-                        opacity: 0.2, borderRadius: '50%', zIndex: 1
+                        width: '30vw', height: '30vw',
+                        background: 'var(--accent1)', filter: 'blur(60px)', /* Reduced blur */
+                        opacity: 0.15, borderRadius: '50%', zIndex: 1,
+                        willChange: 'transform'
                     }}
                 />
                 <motion.div
-                    animate={{ x: [0, -40, 0], y: [0, 50, 0] }}
+                    animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
                     transition={{ repeat: Infinity, duration: 25 }}
                     style={{
                         position: 'absolute', bottom: '20%', left: '10%',
-                        width: '35vw', height: '35vw',
-                        background: 'var(--accent3)', filter: 'blur(120px)',
-                        opacity: 0.15, borderRadius: '50%', zIndex: 1
+                        width: '25vw', height: '25vw',
+                        background: 'var(--accent3)', filter: 'blur(80px)', /* Reduced blur */
+                        opacity: 0.1, borderRadius: '50%', zIndex: 1,
+                        willChange: 'transform'
                     }}
                 />
             </motion.div>
 
             {/* Content */}
-            <motion.div style={{ y: contentY, opacity, position: 'relative', zIndex: 10, textAlign: 'center', padding: '0 2rem', maxWidth: '1000px' }}>
+            <motion.div style={{ y: contentY, opacity, position: 'relative', zIndex: 10, textAlign: 'center', padding: '0 2rem', maxWidth: '1000px', willChange: 'transform, opacity' }}>
                 <motion.span
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
