@@ -80,9 +80,9 @@ const Hero = () => {
                     style={{ marginBottom: '2rem' }}
                 >
                     <img
-                        src="/logo-suverdin.png"
+                        src="./logo-suverdin.png"
                         alt="Suverdin"
-                        style={{ height: '80px', width: 'auto', filter: 'brightness(0) invert(1)' }}
+                        style={{ height: '100px', width: 'auto', filter: 'brightness(0) invert(1)' }}
                     />
                 </motion.div>
 

@@ -57,31 +57,19 @@ const Header = () => {
                     style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.6rem',
                         textDecoration: 'none',
                         flexShrink: 0
                     }}
                 >
                     <img
-                        src="/logo-suverdin.png"
-                        alt="Suverdin Logo"
+                        src="./logo-suverdin.png"
+                        alt="Suverdin"
                         style={{
-                            height: isMobile ? '32px' : '40px',
+                            height: isMobile ? '45px' : '55px',
                             width: 'auto',
                             display: 'block'
                         }}
                     />
-                    <span style={{
-                        fontFamily: 'var(--font-heading)',
-                        fontSize: isMobile ? '1.1rem' : '1.3rem',
-                        fontWeight: 500,
-                        letterSpacing: '0.2em',
-                        color: 'var(--charcoal)',
-                        textTransform: 'uppercase',
-                        display: scrolled && !isMobile ? 'none' : 'block'
-                    }}>
-                        Suverdin
-                    </span>
                 </Link>
 
                 {/* Navigation - Desktop */}
