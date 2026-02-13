@@ -112,6 +112,7 @@ ol {
 .gradient-text-shadow {
   background: var(--vibrant-gradient);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
   filter: drop-shadow(0 4px 15px rgba(209, 108, 77, 0.2));
