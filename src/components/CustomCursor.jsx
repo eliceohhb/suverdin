@@ -14,7 +14,10 @@ const CustomCursor = () => {
     const springY = useSpring(cursorY, springConfig);
 
     useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        const checkMobile = () => {
+            const touchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            setIsMobile(window.innerWidth < 1024 || touchDevice);
+        };
         checkMobile();
         window.addEventListener('resize', checkMobile);
 

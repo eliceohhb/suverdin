@@ -9,6 +9,15 @@ const Header = () => {
     const [scrolled, setScrolled] = useState(false);
     const { totalItems } = useCart();
 
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
@@ -22,19 +31,19 @@ const Header = () => {
             className={`site-header ${scrolled ? 'floating-colorful-navbar' : ''}`}
             style={{
                 position: 'fixed',
-                top: scrolled ? '1.5rem' : '0',
+                top: isMobile ? (scrolled ? '0.5rem' : '0') : (scrolled ? '1.5rem' : '0'),
                 left: '50%',
                 transform: 'translateX(-50%)',
-                width: scrolled ? 'auto' : '100%',
+                width: isMobile ? 'calc(100% - 1rem)' : (scrolled ? 'auto' : '100%'),
                 maxWidth: 'var(--container-max)',
                 zIndex: 100,
-                padding: scrolled ? '0.75rem 2rem' : '2rem 3rem',
-                transition: 'all 0.6s cubic-bezier(0.2, 0, 0, 1)',
+                padding: isMobile ? '0.6rem 1.2rem' : (scrolled ? '0.75rem 2rem' : '2rem 3rem'),
+                transition: 'all 0.4s cubic-bezier(0.2, 0, 0, 1)',
                 background: scrolled ? '' : 'transparent',
-                backdropFilter: scrolled ? '' : 'none',
-                borderRadius: scrolled ? '100px' : '0',
-                boxShadow: scrolled ? '' : 'none',
-                border: scrolled ? '' : 'none',
+                backdropFilter: scrolled ? 'blur(12px)' : 'none',
+                borderRadius: scrolled ? (isMobile ? '20px' : '100px') : '0',
+                boxShadow: scrolled ? '0 10px 30px rgba(0,0,0,0.08)' : 'none',
+                border: scrolled ? '1px solid rgba(255,255,255,0.2)' : 'none',
             }}
         >
             <div className="container" style={{ display: 'flex', alignItems: 'center', gap: '3rem', padding: '0' }}>
@@ -46,25 +55,26 @@ const Header = () => {
                     style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.75rem',
-                        textDecoration: 'none'
+                        gap: '0.6rem',
+                        textDecoration: 'none',
+                        flexShrink: 0
                     }}
                 >
                     <div style={{
-                        width: '32px',
-                        height: '32px',
+                        width: isMobile ? '28px' : '32px',
+                        height: isMobile ? '28px' : '32px',
                         background: 'var(--vibrant-gradient)',
                         borderRadius: 'var(--radius-organic)',
                         boxShadow: '0 4px 15px rgba(209,108,77,0.3)'
                     }}></div>
                     <span style={{
                         fontFamily: 'var(--font-heading)',
-                        fontSize: '1.4rem',
+                        fontSize: isMobile ? '1.1rem' : '1.4rem',
                         fontWeight: 700,
                         letterSpacing: '0.05em',
                         color: 'var(--primary)',
                         textTransform: 'uppercase',
-                        display: scrolled ? 'none' : 'block'
+                        display: scrolled && !isMobile ? 'none' : 'block'
                     }}>
                         SUVERDIN
                     </span>

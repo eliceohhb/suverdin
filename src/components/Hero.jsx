@@ -3,15 +3,25 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 
 const Hero = () => {
     const { scrollY } = useScroll();
-    const bgY = useTransform(scrollY, [0, 800], [0, 300]);
-    const contentY = useTransform(scrollY, [0, 800], [0, -120]);
+    const [isMobile, setIsMobile] = React.useState(false);
+
+    React.useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    const bgY = useTransform(scrollY, [0, 800], isMobile ? [0, 0] : [0, 300]);
+    const contentY = useTransform(scrollY, [0, 800], isMobile ? [0, 0] : [0, -120]);
     const opacity = useTransform(scrollY, [0, 400], [1, 0]);
-    const scale = useTransform(scrollY, [0, 800], [1, 1.15]);
+    const scale = useTransform(scrollY, [0, 800], isMobile ? [1, 1] : [1, 1.15]);
 
     return (
         <section style={{
             position: 'relative',
-            height: '100vh',
+            minHeight: '100svh',
+            height: 'auto',
             width: '100%',
             overflow: 'hidden',
             display: 'flex',
