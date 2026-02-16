@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Instagram, Facebook, Mail, MessageCircle, MapPin, Linkedin, Youtube, Twitter, Music2 } from 'lucide-react';
-import logo from '../assets/logo-suverdin.png';
+import logo from '../assets/logo-full.png';
 
 const Footer = () => {
     return (

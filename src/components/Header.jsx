@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, Menu, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import logo from '../assets/logo-suverdin.png';
+import logo from '../assets/logo-full.png';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
