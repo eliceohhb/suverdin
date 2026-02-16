@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Instagram, Facebook, Mail, MessageCircle, MapPin } from 'lucide-react';
+import { Instagram, Facebook, Mail, MessageCircle, MapPin, Linkedin, Youtube, Twitter, Music2 } from 'lucide-react';
+import logo from '../assets/logo-suverdin.png';
 
 const Footer = () => {
     return (
@@ -31,18 +33,17 @@ const Footer = () => {
 
                     {/* Brand Column */}
                     <div>
-                        <h2 style={{
-                            fontFamily: 'var(--font-heading)',
-                            fontSize: '2rem',
-                            letterSpacing: '0.1em',
-                            marginBottom: '1.5rem',
-                            background: 'var(--vibrant-gradient)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            display: 'inline-block'
-                        }}>
-                            SUVERDIN
-                        </h2>
+                        <Link
+                            to="/"
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                            style={{ display: 'inline-block', marginBottom: '1.5rem' }}
+                        >
+                            <img
+                                src={logo}
+                                alt="Suverdin"
+                                style={{ height: '50px', width: 'auto', display: 'block' }}
+                            />
+                        </Link>
                         <p style={{ opacity: 0.6, lineHeight: 1.8, maxWidth: '300px' }}>
                             Transformando la naturaleza en piezas con alma. Muebles artesanales diseñados para trascender generaciones.
                         </p>
@@ -81,22 +82,35 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Social Column */}
-                    <div>
-                        <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Siguenos</h3>
-                        <div style={{ display: 'flex', gap: '1.5rem' }}>
-                            {[Instagram, Facebook].map((Icon, idx) => (
-                                <motion.a
-                                    key={idx}
-                                    href="#"
-                                    whileHover={{ y: -5, color: 'var(--secondary)' }}
-                                    style={{ color: 'white', opacity: 0.8 }}
-                                >
-                                    <Icon size={24} />
-                                </motion.a>
-                            ))}
-                        </div>
-                    </div>
+                </div>
+
+                {/* Social Row - Prominent and Centered */}
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: '2rem',
+                    marginBottom: '4rem',
+                    flexWrap: 'wrap'
+                }}>
+                    {[
+                        { Icon: Instagram, url: 'https://instagram.com/suverdin' },
+                        { Icon: Facebook, url: 'https://facebook.com/suverdin' },
+                        { Icon: Linkedin, url: 'https://linkedin.com/company/suverdin' },
+                        { Icon: Youtube, url: 'https://youtube.com/suverdin' },
+                        { Icon: Twitter, url: 'https://twitter.com/suverdin' },
+                        { Icon: Music2, url: 'https://tiktok.com/@suverdin' }
+                    ].map((item, idx) => (
+                        <motion.a
+                            key={idx}
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ y: -5, color: 'var(--secondary)', scale: 1.1 }}
+                            style={{ color: 'white', opacity: 0.8, transition: 'all 0.3s' }}
+                        >
+                            <item.Icon size={28} strokeWidth={1.5} />
+                        </motion.a>
+                    ))}
                 </div>
 
                 {/* Bottom Bar */}

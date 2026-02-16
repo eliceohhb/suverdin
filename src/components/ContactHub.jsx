@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MessageCircle, Instagram, Facebook, Linkedin, Youtube, Twitter, ArrowUpRight } from 'lucide-react';
+import { Mail, MessageCircle, Instagram, Facebook, Linkedin, Youtube, Twitter, ArrowUpRight, Music2 } from 'lucide-react';
 
 const socialLinks = [
     { icon: MessageCircle, name: 'WhatsApp', url: 'https://wa.me/56928870119', color: '#25D366', desc: 'Respuesta inmediata' },
@@ -10,6 +10,7 @@ const socialLinks = [
     { icon: Linkedin, name: 'LinkedIn', url: 'https://linkedin.com/company/suverdin', color: '#0A66C2', desc: 'Perfil profesional' },
     { icon: Youtube, name: 'YouTube', url: 'https://youtube.com/suverdin', color: '#FF0000', desc: 'Videos y tutoriales' },
     { icon: Twitter, name: 'X', url: 'https://twitter.com/suverdin', color: '#000000', desc: 'Novedades rápidas' },
+    { icon: Music2, name: 'TikTok', url: 'https://tiktok.com/@suverdin', color: '#000000', desc: 'Contenido exclusivo' },
 ];
 
 const ContactHub = () => {

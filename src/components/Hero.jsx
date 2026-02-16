@@ -83,7 +83,7 @@ const Hero = () => {
                     <img
                         src={logo}
                         alt="Suverdin"
-                        style={{ height: '120px', width: 'auto', filter: 'brightness(0) invert(1)' }}
+                        style={{ height: isMobile ? '100px' : '180px', width: 'auto' }}
                     />
                 </motion.div>
 
@@ -120,8 +120,7 @@ const Hero = () => {
                         fontStyle: 'italic'
                     }}
                 >
-                    Suverdin<br />
-                    <span style={{ fontStyle: 'normal', color: 'var(--background)' }}>Handcrafted</span>
+                    <span style={{ fontStyle: 'normal', color: 'var(--background)' }}>Modern Handcrafted</span>
                 </motion.h1>
 
                 <motion.div
