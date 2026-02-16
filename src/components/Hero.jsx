@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo-full.png';
+import TransparentLogo from './TransparentLogo';
 
 const Hero = () => {
     const { scrollY } = useScroll();
@@ -80,10 +81,11 @@ const Hero = () => {
                     transition={{ duration: 1 }}
                     style={{ marginBottom: '2rem' }}
                 >
-                    <img
+                    <TransparentLogo
                         src={logo}
                         alt="Suverdin"
-                        style={{ height: isMobile ? '100px' : '180px', width: 'auto' }}
+                        height={isMobile ? '100px' : '180px'}
+                        style={{ margin: '0 auto' }}
                     />
                 </motion.div>
 

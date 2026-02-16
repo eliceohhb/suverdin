@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Instagram, Facebook, Mail, MessageCircle, MapPin, Linkedin, Youtube, Twitter, Music2 } from 'lucide-react';
 import logo from '../assets/logo-full.png';
+import TransparentLogo from './TransparentLogo';
 
 const Footer = () => {
     return (
@@ -38,10 +39,10 @@ const Footer = () => {
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                             style={{ display: 'inline-block', marginBottom: '1.5rem' }}
                         >
-                            <img
+                            <TransparentLogo
                                 src={logo}
                                 alt="Suverdin"
-                                style={{ height: '50px', width: 'auto', display: 'block' }}
+                                height="50px"
                             />
                         </Link>
                         <p style={{ opacity: 0.6, lineHeight: 1.8, maxWidth: '300px' }}>

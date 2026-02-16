@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, Menu, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import logo from '../assets/logo-full.png';
+import TransparentLogo from './TransparentLogo';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -62,14 +63,10 @@ const Header = () => {
                         flexShrink: 0
                     }}
                 >
-                    <img
+                    <TransparentLogo
                         src={logo}
                         alt="Suverdin"
-                        style={{
-                            height: isMobile ? '45px' : '55px',
-                            width: 'auto',
-                            display: 'block'
-                        }}
+                        height={isMobile ? '45px' : '55px'}
                     />
                 </Link>
 
